@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Image extends Model
 {
     use HasFactory;
+    protected $guarded =[];
 
     public function resource(): MorphTo
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use App\Http\Resources\OfficeResource;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Builder ;
 
 class OfficeController extends Controller
@@ -25,6 +26,8 @@ class OfficeController extends Controller
         => $builder->whereRelation('reservations','user_id','=',request('user_id'))
         )
         ->latest('id')
+        ->with(['images','tags','user'])
+        ->withCount(['reservations'=>fn($builder)=>$builder->where('status',Reservation::STATUS_ACTIVE)])
         ->paginate(20);
 
         return OfficeResource::collection($offices);

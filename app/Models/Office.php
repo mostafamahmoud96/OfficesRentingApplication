@@ -12,7 +12,7 @@ class Office extends Model
 {
     use HasFactory ,
     SoftDeletes;
-    
+
     const APPROVAL_PENDING = 1;
     const APPROVAL_APPROVED = 2;
     const APPROVAL_REJECTED = 3;
@@ -38,5 +38,10 @@ class Office extends Model
     {
         return $this->morphMany(Image::class,'resource');
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'offices_tags');
+    }
+
 
 }

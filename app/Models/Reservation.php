@@ -10,7 +10,7 @@ class Reservation extends Model
     use HasFactory;
     const STATUS_ACTIVE = 1;
     const STATUS_CANCELLED = 2;
-    
+
     protected $casts =[
         'price'=>'integer',
         'status'=>'integer',
@@ -18,7 +18,7 @@ class Reservation extends Model
         'end_date'=>'immutable_date',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -26,5 +26,7 @@ class Reservation extends Model
     {
         return $this->belongsTo(Office::class);
     }
+
+
 
 }
